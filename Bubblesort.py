@@ -1,10 +1,13 @@
-def bubblesort(arr):
-    if len(arr) > 1:
-        for i in range(len(arr)):
-            for i in range(len(arr)-1-i):
-                if arr[i] > arr[i+1]:
-                    arr[i], arr[i+1] = arr[i+1], arr[i]
-            
-    return(arr)
+"""
+BUBBLE SORT ALGORITHM :
+"""
 
-print(bubblesort([2363,23471,6,2,6,1,-1]))
+def Bubblesort(arr):
+    for i in range(len(arr) - 1):
+        for j in range(0, len(arr) - 1 - i):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+    return arr
+
+print(Bubblesort([5,4,3,2,1]))

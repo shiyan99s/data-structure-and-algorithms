@@ -1,11 +1,16 @@
-def mergesort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2
-        left = arr[:mid]
-        right = arr[mid:]
+"""
+MERGE SORT ALGORITHM : Recursive method
+"""
 
-        left = mergesort(left)
-        right = mergesort(right)
+
+def MergeSort(arr):
+    if len(arr) > 1:
+        mid_point = len(arr) // 2   # mid_point of arr
+        left = arr[:mid_point]
+        right = arr[mid_point:]
+
+        left = MergeSort(left)
+        right = MergeSort(right)
 
         arr = []
         while len(left) > 0 and len(right) > 0:
@@ -23,4 +28,8 @@ def mergesort(arr):
 
     return arr
 
-print(mergesort([5,1234,616,-1]))
+"""
+Checking MergeSort
+"""
+arr = [11173, 3241, 45241, 1431, 57, 234, 1, -1]
+print(MergeSort(arr))
