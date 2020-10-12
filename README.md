@@ -1,2 +1,2 @@
 # Data structures and Algorithms in Python
-![Alt Text](https://flyclipart.com/thumb2/google-summer-of-code-organization-python-software-foundation-205853.png)
+![Alt Text](https://www.pngitem.com/middle/hThbob_programming-icon-png-python-logo-512-transparent-png/#)
