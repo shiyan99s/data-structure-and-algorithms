@@ -8,10 +8,10 @@ def kadaneAlgo(arr):
 
     for i in range(len(arr)):
         checking += arr[i]
+        if checked < checking:
+            checked = checking
         if checking < 0:
             checking = 0
-        elif checked < checking:
-            checked = checking
 
     return checked
 
