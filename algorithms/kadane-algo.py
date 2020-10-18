@@ -1,9 +1,10 @@
 """
     KADANE's ALGORITHM :  maximum contiguous subarray
 """
+from sys import maxsize
 
 def kadaneAlgo(arr):
-    checked = 0
+    checked = - maxsize
     checking = 0
 
     for i in range(len(arr)):
