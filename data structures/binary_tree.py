@@ -4,6 +4,7 @@ class Node:
         self.right = None
         self.left = None
 
+
 class BinaryTree:
     def __init__(self, root):
         self.root = Node(root)
@@ -37,7 +38,6 @@ tree.root.right = Node(3)
 tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 
+print(tree.print())
 print(tree.search(4))
 print(tree.search(6))
-
-print(tree.print())

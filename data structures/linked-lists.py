@@ -3,6 +3,7 @@ class Node:
         self.value = value
         self.next = None
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -80,6 +81,7 @@ class LinkedList:
 
         previous.next = temp.next
         temp = None
+
 
 if __name__ == "__main__":
     list = LinkedList()
