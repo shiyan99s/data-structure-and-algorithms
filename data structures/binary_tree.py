@@ -10,7 +10,7 @@ class BinaryTree:
         self.root = Node(root)
 
     def search(self, find_val):
-        return self.preorder_search(self.root, find_val)
+        print(self.preorder_search(self.root, find_val))
 
     def preorder_search(self, current, find_val):
         if current:
@@ -21,23 +21,94 @@ class BinaryTree:
         return False
 
     def print(self):
-        return self.preorder_print(self.root, "")[:-1]
+        print(self.inorder_print(self.root, "")[:-1])
 
-    def preorder_print(self, current, traversal):
+    def inorder_print(self, current, traversal):
         if current:
+            traversal = self.inorder_print(current.left, traversal)
             traversal += str(current.value) + "-"
-            traversal = self.preorder_print(current.left, traversal)
-            traversal = self.preorder_print(current.right, traversal)
+            traversal = self.inorder_print(current.right, traversal)
+
+        return traversal
+
+    def insert(self, value):
+        return self.insert_helper(self.root, value)
+
+    def insert_helper(self, current, value):
+        if current is None:
+            return Node(value)
+        else:
+            if current.value == value:
+                return root
+            elif current.value > value:
+                current.left = self.insert_helper(current.left, value)
+            else:
+                current.right = self.insert_helper(current.right, value)
+
+        return current
+
+    def successorNode(self, value):
+        current = value
+        if current.left is not None:
+            current = curren.left
+
+        return current
+
+    def delete(self, value):
+        return self.delete_helper(self.root, value)
+
+    def delete_helper(self, current, value):
+        if current is None:
+            return current
+
+        if current.value > value:
+            current.left = self.delete_helper(current.left, value)
+        elif current.value < value:
+            current.right = self.delete_helper(current.right, value)
+        else:
+            if current.left is None:
+                temp = current.right
+                current = None
+                return temp
+            elif current.right is None:
+                temp = current.left
+                current = None
+                return temp
+
+            temp = self.successorNode(current.left)
+            current.value = temp.value
+
+            current.right = self.delete_helper(current.right, temp.value)
+
+        return current
+
+    def kthSmallest(self, value):
+        print(self.kthSmallest_helper(self.root, [], value)[value-1])
+
+    def kthSmallest_helper(self, current, traversal, value):
+        if current:
+            traversal = self.kthSmallest_helper(current.left, traversal, value)
+            traversal.append(current.value)
+            traversal = self.kthSmallest_helper(
+                current.right, traversal, value)
 
         return traversal
 
 
-tree = BinaryTree(1)
-tree.root.left = Node(2)
-tree.root.right = Node(3)
-tree.root.left.left = Node(4)
-tree.root.left.right = Node(5)
+tree = BinaryTree(50)
 
-print(tree.print())
-print(tree.search(4))
-print(tree.search(6))
+# Raw node insertion
+# tree.root.left = Node(30)
+# tree.root.left.left = Node(20)
+# tree.root.left.right = Node(40)
+# tree.root.right = Node(70)
+# tree.root.right.left = Node(60)
+# tree.root.right.right = Node(80)
+
+# Better insertion way
+keys = [30, 20, 40, 70, 60, 80]
+for key in keys:
+    root = tree.insert(key)
+
+tree.print()
+tree.kthSmallest(2)
