@@ -37,7 +37,8 @@ class LinkedList:
         while temp:
             counter += 1
             temp = temp.next
-        return counter
+
+        print(counter)
 
     def print(self):
         arr = []
@@ -45,7 +46,8 @@ class LinkedList:
         while temp:
             arr.append(temp.value)
             temp = temp.next
-        return arr
+
+        print(arr)
 
     def push_front(self, new_val):
         new_val = Node(new_val)
@@ -84,18 +86,12 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    list = LinkedList()
-    list.head = Node(3)
-    second = Node(5)
-    third = Node(8)
+    ll = LinkedList()
+    keys = [1, 2, 3, 4, 5, 6]
+    for key in keys:
+        root = ll.append(key)
 
-    list.head.next = second
-    second.next = third
-
-    list.append(11)
-    list.push_front(0)
-    print(list.get_position(1))
-    list.insert(7, 4)
-    print(list.print())
-    list.delete(5)
-    print(list.print())
+    ll.insert(7, 6)
+    ll.push_front(0)
+    ll.delete(0)
+    ll.print()
