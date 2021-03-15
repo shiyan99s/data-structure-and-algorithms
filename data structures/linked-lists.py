@@ -84,6 +84,18 @@ class LinkedList:
         previous.next = temp.next
         temp = None
 
+    def reverse(self):
+        current = self.head
+        prev = None
+
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+
+        self.head = prev
+
 
 if __name__ == "__main__":
     ll = LinkedList()
@@ -94,4 +106,5 @@ if __name__ == "__main__":
     ll.insert(7, 6)
     ll.push_front(0)
     ll.delete(0)
+    ll.reverse()
     ll.print()
