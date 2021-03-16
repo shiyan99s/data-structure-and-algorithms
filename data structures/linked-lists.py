@@ -41,19 +41,20 @@ class LinkedList:
         print(counter)
 
     def print(self):
+        current = self.head
         arr = []
-        temp = self.head
-        while temp:
-            arr.append(temp.value)
-            temp = temp.next
+        s = "->"
+        while current:
+            arr.append(str(current.value))
+            current = current.next
 
-        print(arr)
+        print(s.join(arr))
 
-    def push_front(self, new_val):
-        new_val = Node(new_val)
-        temp = self.head
-        self.head = new_val
-        self.head.next = temp
+    # Push new node in front
+    def push(self, value):
+        value = Node(value)
+        value.next = self.head
+        self.head = value
 
     def insert(self, new_val, position):
         new_val = Node(new_val)
@@ -84,6 +85,8 @@ class LinkedList:
         previous.next = temp.next
         temp = None
 
+    # Reverses the linked list
+    # Pointing the current.next to the previous node
     def reverse(self):
         current = self.head
         prev = None
@@ -96,15 +99,41 @@ class LinkedList:
 
         self.head = prev
 
+    def rotate(self, k):
+        current = self.head
+        counter = 1
+        # Traverse till kth Node
+        while current and counter < k:
+            current = current.next
+            counter += 1
+
+        # Store the kth Node in a variable
+        kthNode = current
+
+        while current.next:
+            current = current.next
+
+        # Change the last node to
+        # previous head
+        current.next = self.head
+
+        # Change head to (k+1)th node
+        self.head = kthNode.next
+
+        # kthNode pointing NULL as next
+        kthNode.next = None
+
 
 if __name__ == "__main__":
     ll = LinkedList()
-    keys = [1, 2, 3, 4, 5, 6]
+    keys = [10, 20, 30, 40, 50, 60]
     for key in keys:
         root = ll.append(key)
 
-    ll.insert(7, 6)
-    ll.push_front(0)
+    ll.push(0)
     ll.delete(0)
     ll.reverse()
+    ll.reverse()
+    ll.print()
+    ll.rotate(2)
     ll.print()
