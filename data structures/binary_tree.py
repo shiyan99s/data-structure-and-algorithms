@@ -50,7 +50,7 @@ class BinaryTree:
     def successorNode(self, value):
         current = value
         if current.left is not None:
-            current = curren.left
+            current = current.left
 
         return current
 
@@ -66,6 +66,9 @@ class BinaryTree:
         elif current.value < value:
             current.right = self.delete_helper(current.right, value)
         else:
+            # if Node has one child or no child
+            # copy children into temp variable
+            # and return it to grandparent
             if current.left is None:
                 temp = current.right
                 current = None
@@ -75,9 +78,16 @@ class BinaryTree:
                 current = None
                 return temp
 
+            # Node has two children nodes
+            # Find inorder successor node
+            # store it in a temp variable
             temp = self.successorNode(current.left)
+
+            # Change the current value
+            # to inorder successor's value
             current.value = temp.value
 
+            # Delete inorder successor
             current.right = self.delete_helper(current.right, temp.value)
 
         return current
@@ -96,15 +106,6 @@ class BinaryTree:
 
 
 tree = BinaryTree(50)
-
-# Raw node insertion
-# tree.root.left = Node(30)
-# tree.root.left.left = Node(20)
-# tree.root.left.right = Node(40)
-# tree.root.right = Node(70)
-# tree.root.right.left = Node(60)
-# tree.root.right.right = Node(80)
-
 # Better insertion way
 keys = [30, 20, 40, 70, 60, 80]
 for key in keys:
